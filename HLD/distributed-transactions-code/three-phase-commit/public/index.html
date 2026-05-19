@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Three-Phase Commit (3PC)</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Three-Phase Commit (3PC)</h1>
+
+  <section class="card hint">
+    <strong>3PC adds a pre-commit phase</strong> between prepare and commit.<br>
+    Phase 1: "Can you?" → Phase 2: "Everyone said yes, get ready" → Phase 3: "Commit!"<br><br>
+    <strong>The fix:</strong> If coordinator crashes after pre-commit, participants KNOW everyone
+    agreed → they commit independently. In 2PC they'd be stuck.<br>
+    <strong>The weakness:</strong> Still breaks under network partitions (one side commits, other aborts).
+  </section>
+
+  <section class="card">
+    <p class="label">Service State</p>
+    <div id="state" class="state-grid"></div>
+  </section>
+
+  <section class="card">
+    <p class="label">Scenarios</p>
+    <div class="buttons">
+      <button class="green" onclick="placeOrder({})">Happy Path (3 phases)</button>
+      <button class="yellow" onclick="placeOrder({failService:'inventory'})">Inventory fails → abort</button>
+      <button class="blue" onclick="placeOrder({crashBeforePreCommit:true})">Crash BEFORE pre-commit (safe abort)</button>
+      <button class="red" onclick="placeOrder({crashAfterPreCommit:true})">Crash AFTER pre-commit (independent commit!)</button>
+      <button class="neutral" onclick="reset()">Reset</button>
+    </div>
+  </section>
+
+  <section class="card">
+    <h3>Transaction Log</h3>
+    <p class="sublabel">Compare: crash before pre-commit → abort. Crash after → commit. That's the 3PC advantage.</p>
+    <div id="log"></div>
+  </section>
+
+  <script src="client.js"></script>
+</body>
+</html>

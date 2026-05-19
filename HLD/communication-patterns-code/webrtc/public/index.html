@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WebRTC Demo</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <h1>WebRTC Peer-to-Peer Audio Demo</h1>
+
+  <section class="card hint">
+    Open this page in <strong>two tabs</strong>.<br>
+    Tab 1 → Join as Customer. Tab 2 → Join as Driver, then click Call.<br>
+    Audio flows directly between tabs. The server only relays the initial handshake.
+  </section>
+
+  <section class="card">
+    <p class="label">Step 1: Join a role</p>
+    <div class="buttons">
+      <button id="joinCustomer" class="green" onclick="join('customer')">Join as Customer</button>
+      <button id="joinDriver" class="blue" onclick="join('driver')">Join as Driver</button>
+    </div>
+  </section>
+
+  <section class="card">
+    <p class="label">Step 2: Call</p>
+    <div class="buttons">
+      <button id="callBtn" class="green" onclick="startCall()" disabled>Call</button>
+      <button id="hangupBtn" class="red" onclick="hangup()" disabled>Hang Up</button>
+    </div>
+  </section>
+
+  <div class="status-bar">
+    <div>
+      <span class="label">Status</span>
+      <span id="status" class="badge neutral">Not joined</span>
+    </div>
+    <div>
+      <span class="label">Peer</span>
+      <span id="peer" class="badge neutral">—</span>
+    </div>
+  </div>
+
+  <audio id="remoteAudio" autoplay></audio>
+
+  <section class="card">
+    <h3>Signaling Log</h3>
+    <p class="sublabel">
+      Watch: join → offer/answer (SDP exchange) → ICE candidates (network routes) → connected
+    </p>
+    <div id="log"></div>
+  </section>
+
+  <script src="client.js"></script>
+</body>
+</html>

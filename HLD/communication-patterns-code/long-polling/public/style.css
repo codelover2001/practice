@@ -1,0 +1,105 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+  background: #0d1117;
+  color: #c9d1d9;
+  padding: 30px;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+h1 {
+  color: #58a6ff;
+  margin-bottom: 20px;
+  font-size: 22px;
+}
+
+h3 {
+  color: #58a6ff;
+  font-size: 14px;
+  margin-bottom: 6px;
+}
+
+.card {
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 14px;
+}
+
+.label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #8b949e;
+  margin-bottom: 8px;
+}
+
+.sublabel {
+  font-size: 11px;
+  color: #8b949e;
+  margin-bottom: 10px;
+}
+
+#status {
+  font-size: 28px;
+  font-weight: bold;
+  color: #7ee787;
+}
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+button {
+  background: #238636;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+button:hover {
+  background: #2ea043;
+}
+
+#log {
+  max-height: 350px;
+  overflow-y: auto;
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+.entry {
+  border-bottom: 1px solid #21262d;
+  padding: 3px 0;
+}
+
+.time {
+  color: #8b949e;
+}
+
+.highlight {
+  color: #ffa657;
+  font-weight: bold;
+}
+
+.request {
+  color: #79c0ff;
+}
+
+.timeout {
+  color: #8b949e;
+}

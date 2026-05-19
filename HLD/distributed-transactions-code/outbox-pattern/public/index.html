@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Outbox Pattern</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Outbox Pattern</h1>
+
+  <section class="card hint">
+    <strong>The problem (Dual Write):</strong> Writing to DB and Kafka separately — if one fails,
+    data is inconsistent. No way to make both atomic.<br><br>
+    <strong>The solution (Outbox):</strong> Write order + event to the SAME database in ONE transaction.
+    A separate publisher reads the outbox table and publishes to Kafka.
+    If publisher crashes, it picks up where it left off. No events lost.
+  </section>
+
+  <section class="card">
+    <p class="label">1. Dual Write (BROKEN — see the inconsistency)</p>
+    <div class="buttons">
+      <button class="green" onclick="dualWrite({})">Dual Write (both succeed)</button>
+      <button class="red" onclick="dualWrite({failAt:'kafka'})">DB ok, Kafka fails</button>
+      <button class="red" onclick="dualWrite({failAt:'db'})">DB fails, Kafka ok</button>
+    </div>
+  </section>
+
+  <section class="card">
+    <p class="label">2. Outbox Pattern (CORRECT)</p>
+    <div class="buttons">
+      <button class="green" onclick="outboxWrite()">Create order via outbox</button>
+      <button class="blue" onclick="startPublisher()">Start Publisher (polls outbox → Kafka)</button>
+      <button class="yellow" onclick="stopPublisher()">Stop Publisher (simulate crash)</button>
+    </div>
+    <p class="sublabel" style="margin-top:8px">
+      Try: create 3 orders via outbox, then start publisher — all 3 get published.
+      Or: start publisher, stop it, create orders, restart — picks up where it left off.
+    </p>
+  </section>
+
+  <section class="card">
+    <p class="label">Data Stores</p>
+    <div class="stores">
+      <div class="store">
+        <div class="store-title">Orders DB</div>
+        <div id="ordersView"></div>
+      </div>
+      <div class="store">
+        <div class="store-title">Outbox Table</div>
+        <div id="outboxView"></div>
+      </div>
+      <div class="store">
+        <div class="store-title">Kafka Events</div>
+        <div id="kafkaView"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <div style="display:flex;justify-content:space-between;align-items:center">
+      <h3>Event Log</h3>
+      <button class="neutral" onclick="reset()">Reset all</button>
+    </div>
+    <div id="log"></div>
+  </section>
+
+  <script src="client.js"></script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Long Polling Demo</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <h1>Long Polling Demo</h1>
+
+  <section class="card">
+    <p class="label">Current Order Status</p>
+    <div id="status">PLACED</div>
+  </section>
+
+  <section class="card">
+    <p class="label">Simulate status change (or use curl)</p>
+    <div class="buttons">
+      <button onclick="updateStatus('PREPARING')">PREPARING</button>
+      <button onclick="updateStatus('READY')">READY</button>
+      <button onclick="updateStatus('OUT_FOR_DELIVERY')">OUT_FOR_DELIVERY</button>
+      <button onclick="updateStatus('DELIVERED')">DELIVERED</button>
+    </div>
+  </section>
+
+  <section class="card">
+    <h3>Event Log</h3>
+    <p class="sublabel">Watch the long poll cycle: request sent → connection held open → response on change or timeout</p>
+    <div id="log"></div>
+  </section>
+
+  <script src="client.js"></script>
+</body>
+</html>

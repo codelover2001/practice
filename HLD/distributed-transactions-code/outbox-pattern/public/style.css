@@ -1,0 +1,35 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'SF Mono','Fira Code',monospace; background: #0d1117; color: #c9d1d9; padding: 30px; max-width: 780px; margin: 0 auto; }
+h1 { color: #58a6ff; margin-bottom: 16px; font-size: 22px; }
+h3 { color: #58a6ff; font-size: 14px; margin-bottom: 6px; }
+.card { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 16px; margin-bottom: 14px; }
+.hint { font-size: 12px; color: #8b949e; line-height: 1.7; }
+.hint strong { color: #c9d1d9; }
+.sublabel { font-size: 11px; color: #8b949e; }
+.label { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: #8b949e; margin-bottom: 10px; }
+.buttons { display: flex; flex-wrap: wrap; gap: 6px; }
+button { border: none; padding: 9px 16px; border-radius: 6px; cursor: pointer; font-family: inherit; font-size: 12px; font-weight: 600; color: #fff; }
+button.green { background: #238636; } button.green:hover { background: #2ea043; }
+button.yellow { background: #9e6a03; } button.yellow:hover { background: #d29922; }
+button.red { background: #da3633; } button.red:hover { background: #f85149; }
+button.blue { background: #1f6feb; } button.blue:hover { background: #388bfd; }
+button.neutral { background: #30363d; } button.neutral:hover { background: #484f58; }
+
+.stores { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.store { background: #0d1117; border: 1px solid #30363d; border-radius: 6px; padding: 10px; font-size: 11px; min-height: 80px; }
+.store-title { font-weight: 700; color: #58a6ff; margin-bottom: 6px; font-size: 12px; }
+.row { padding: 3px 0; border-bottom: 1px solid #21262d; color: #c9d1d9; }
+.row.published { color: #7ee787; }
+.row.unpublished { color: #d29922; }
+.row.inconsistent { color: #f85149; }
+.empty { color: #484f58; }
+
+#log { max-height: 350px; overflow-y: auto; font-size: 11.5px; line-height: 1.8; margin-top: 8px; }
+.entry { border-bottom: 1px solid #21262d; padding: 3px 0; }
+.time { color: #484f58; font-size: 10px; }
+.phase { color: #d2a8ff; font-weight: 700; }
+.coord { color: #79c0ff; }
+.step { color: #7ee787; }
+.publish { color: #7ee787; font-weight: 700; }
+.error { color: #f85149; }
+.crash { color: #f85149; font-weight: 700; background: rgba(248,81,73,.1); padding: 2px 4px; border-radius: 3px; }

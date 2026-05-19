@@ -1,0 +1,33 @@
+flink:
+  jobmanager_url: "http://flink-jobmanager:8081"
+
+kubernetes:
+  namespace: "default"
+  taskmanager_deployment: "flink-taskmanager"
+
+scaling_policy:
+  # CPU thresholds (percentage)
+  cpu_scale_up_threshold: 80.0
+  cpu_scale_down_threshold: 30.0
+  
+  # Memory thresholds (percentage)
+  memory_scale_up_threshold: 85.0
+  memory_scale_down_threshold: 40.0
+  
+  # Backpressure threshold (ratio 0-1)
+  backpressure_threshold: 0.8
+  
+  # Task queue threshold
+  pending_tasks_threshold: 100
+  
+  # Scaling limits
+  min_task_managers: 2
+  max_task_managers: 20
+  
+  # Timing controls (seconds)
+  scale_up_cooldown: 300      # 5 minutes
+  scale_down_cooldown: 600    # 10 minutes
+  evaluation_interval: 60     # 1 minute
+  
+  # Stability requirements
+  stable_period_for_scale_down: 600  # 10 minutes 

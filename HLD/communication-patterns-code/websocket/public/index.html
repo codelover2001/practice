@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WebSocket Demo</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <h1>WebSocket Demo</h1>
+
+  <div class="status-bar">
+    <div>
+      <span class="label">Connection</span>
+      <span id="connStatus" class="badge disconnected">disconnected</span>
+    </div>
+    <div>
+      <span class="label">Watchers</span>
+      <span id="watcherCount" class="badge">0</span>
+    </div>
+  </div>
+
+  <section class="card">
+    <p class="label">Order Status</p>
+    <div id="status">waiting...</div>
+  </section>
+
+  <section class="card">
+    <p class="label">Push status from server side (simulates restaurant/driver)</p>
+    <div class="buttons">
+      <button onclick="pushStatus('PREPARING')">PREPARING</button>
+      <button onclick="pushStatus('PICKED_UP')">PICKED_UP</button>
+      <button onclick="pushStatus('OUT_FOR_DELIVERY')">OUT_FOR_DELIVERY</button>
+      <button onclick="pushStatus('DELIVERED')">DELIVERED</button>
+    </div>
+  </section>
+
+  <section class="card">
+    <p class="label">Chat (open 2 tabs — messages are bidirectional via WebSocket)</p>
+    <div class="chat-input">
+      <input id="msg" type="text" placeholder="Type a message..." onkeydown="if(event.key==='Enter')sendChat()">
+      <button onclick="sendChat()">Send</button>
+    </div>
+  </section>
+
+  <section class="card">
+    <h3>Event Log</h3>
+    <div id="log"></div>
+  </section>
+
+  <script src="client.js"></script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Two-Phase Commit (2PC)</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Two-Phase Commit (2PC)</h1>
+
+  <section class="card hint">
+    <strong>The idea:</strong> One coordinator asks all participants "Can you commit?"
+    If ALL say YES → "Commit!" If ANY says NO → "Abort!"<br>
+    <strong>The problem:</strong> If coordinator crashes after everyone said YES but before sending COMMIT,
+    all participants are STUCK with locked resources — the <em>blocking problem</em>.
+  </section>
+
+  <section class="card">
+    <p class="label">Service State</p>
+    <div id="state" class="state-grid"></div>
+  </section>
+
+  <section class="card">
+    <p class="label">Scenarios</p>
+    <div class="buttons">
+      <button class="green" onclick="placeOrder({})">Happy Path (all succeed)</button>
+      <button class="yellow" onclick="placeOrder({failService:'inventory'})">Inventory fails → all abort</button>
+      <button class="red" onclick="placeOrder({simulateCrash:true})">Coordinator CRASHES (blocking!)</button>
+      <button class="neutral" onclick="reset()">Reset all state</button>
+    </div>
+  </section>
+
+  <section class="card">
+    <h3>Transaction Log</h3>
+    <div id="log"></div>
+  </section>
+
+  <script src="client.js"></script>
+</body>
+</html>

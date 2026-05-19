@@ -1,0 +1,33 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'SF Mono','Fira Code',monospace; background: #0d1117; color: #c9d1d9; padding: 30px; max-width: 750px; margin: 0 auto; }
+h1 { color: #58a6ff; margin-bottom: 16px; font-size: 22px; }
+h3 { color: #58a6ff; font-size: 14px; margin-bottom: 6px; }
+.card { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 16px; margin-bottom: 14px; }
+.hint { font-size: 12px; color: #8b949e; line-height: 1.7; }
+.hint strong { color: #c9d1d9; }
+.sublabel { font-size: 11px; color: #8b949e; margin-bottom: 10px; }
+.label { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: #8b949e; margin-bottom: 10px; }
+.buttons { display: flex; flex-wrap: wrap; gap: 6px; }
+button { border: none; padding: 9px 16px; border-radius: 6px; cursor: pointer; font-family: inherit; font-size: 12px; font-weight: 600; color: #fff; }
+button.green { background: #238636; } button.green:hover { background: #2ea043; }
+button.yellow { background: #9e6a03; } button.yellow:hover { background: #d29922; }
+button.red { background: #da3633; } button.red:hover { background: #f85149; }
+button.neutral { background: #30363d; } button.neutral:hover { background: #484f58; }
+
+#state { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+.db-card { background: #0d1117; border: 1px solid #30363d; border-radius: 6px; padding: 10px; font-size: 11px; }
+.db-card .title { font-weight: 700; color: #58a6ff; margin-bottom: 4px; font-size: 12px; }
+.db-card .row { color: #c9d1d9; padding: 2px 0; border-bottom: 1px solid #21262d; }
+.db-card .row.confirmed { color: #7ee787; }
+.db-card .row.cancelled { color: #f85149; }
+.db-card .row.refunded { color: #d29922; }
+.db-card .empty { color: #484f58; }
+
+#log { max-height: 400px; overflow-y: auto; font-size: 11.5px; line-height: 1.8; }
+.entry { border-bottom: 1px solid #21262d; padding: 3px 0; }
+.time { color: #484f58; font-size: 10px; }
+.phase { color: #d2a8ff; font-weight: 700; }
+.coord { color: #79c0ff; font-weight: 700; }
+.step { color: #7ee787; }
+.compensate { color: #d29922; font-weight: 700; }
+.error { color: #f85149; }

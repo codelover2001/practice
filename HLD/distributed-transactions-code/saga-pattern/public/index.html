@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SAGA Pattern</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>SAGA Pattern (Orchestration)</h1>
+
+  <section class="card hint">
+    <strong>Sequence of local transactions</strong>, each with a compensating action.<br>
+    Step 1: Create order → Step 2: Charge payment → Step 3: Reserve stock → Step 4: Notify restaurant<br><br>
+    <strong>If step 3 fails:</strong> compensate step 2 (refund) → compensate step 1 (cancel order).<br>
+    No global locks. No 2PC blocking. Each step commits immediately. Undo on failure.
+  </section>
+
+  <section class="card">
+    <p class="label">Database State</p>
+    <div id="state"></div>
+  </section>
+
+  <section class="card">
+    <p class="label">Scenarios</p>
+    <div class="buttons">
+      <button class="green" onclick="placeOrder({})">Happy Path (all 4 steps)</button>
+      <button class="yellow" onclick="placeOrder({failAt:'inventory'})">Inventory fails → compensate 2,1</button>
+      <button class="red" onclick="placeOrder({failAt:'notification'})">Notification fails → compensate 3,2,1</button>
+      <button class="yellow" onclick="placeOrder({failAt:'payment'})">Payment fails → compensate 1</button>
+      <button class="neutral" onclick="reset()">Reset</button>
+    </div>
+  </section>
+
+  <section class="card">
+    <h3>Saga Execution Log</h3>
+    <p class="sublabel">Watch: forward steps execute, then on failure, compensations run in reverse order.</p>
+    <div id="log"></div>
+  </section>
+
+  <script src="client.js"></script>
+</body>
+</html>

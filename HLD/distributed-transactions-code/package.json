@@ -1,0 +1,13 @@
+{
+  "name": "distributed-transactions-code",
+  "private": true,
+  "scripts": {
+    "2pc": "node two-phase-commit/server.js",
+    "3pc": "node three-phase-commit/server.js",
+    "saga": "node saga-pattern/server.js",
+    "outbox": "node outbox-pattern/server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.0"
+  }
+}

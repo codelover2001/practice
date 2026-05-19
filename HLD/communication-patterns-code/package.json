@@ -1,0 +1,15 @@
+{
+  "name": "communication-patterns-code",
+  "private": true,
+  "scripts": {
+    "long-polling": "node 01-long-polling.js",
+    "websocket": "node 02-websocket.js",
+    "sse": "node 03-sse.js",
+    "webhooks": "node 04-webhooks.js",
+    "webrtc": "node 05-webrtc.js"
+  },
+  "dependencies": {
+    "express": "^4.21.0",
+    "ws": "^8.18.0"
+  }
+}

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Webhooks Demo</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <h1>Webhooks Demo</h1>
+
+  <section class="card hint">
+    Webhooks are <strong>server-to-server</strong>. Razorpay POSTs to YOUR endpoint when
+    a payment event happens. No browser connection involved in the actual webhook.
+    This dashboard just visualizes what your server receives.
+  </section>
+
+  <section class="card">
+    <p class="label">Simulate Razorpay calling your webhook</p>
+    <div class="buttons">
+      <button class="green" onclick="sendWebhook('payment.captured', 'evt_' + Date.now(), 'VALID')">
+        payment.captured (valid)
+      </button>
+      <button class="yellow" onclick="sendWebhook('payment.failed', 'evt_fail_' + Date.now(), 'VALID')">
+        payment.failed (valid)
+      </button>
+      <button class="red" onclick="sendWebhook('payment.captured', 'evt_hack', 'BAD_SIGNATURE')">
+        Invalid signature (hacker)
+      </button>
+      <button class="blue" onclick="sendWebhook('payment.captured', 'evt_dupe', 'VALID')">
+        Same event_id twice (idempotency test)
+      </button>
+    </div>
+  </section>
+
+  <section class="card">
+    <h3>Received Webhooks</h3>
+    <div id="log">Loading...</div>
+  </section>
+
+  <script src="client.js"></script>
+</body>
+</html>

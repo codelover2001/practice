@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SSE Demo</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <h1>Server-Sent Events (SSE) Demo</h1>
+
+  <div class="status-bar">
+    <div>
+      <span class="label">Connection</span>
+      <span id="connStatus" class="badge">connecting...</span>
+    </div>
+    <div>
+      <span class="label">Last Event ID</span>
+      <span id="lastEventId" class="badge neutral">—</span>
+    </div>
+  </div>
+
+  <section class="card">
+    <p class="label">Order Status</p>
+    <div id="status">connecting...</div>
+  </section>
+
+  <section class="card">
+    <p class="label">Push status updates</p>
+    <div class="buttons">
+      <button onclick="pushStatus('PREPARING')">PREPARING</button>
+      <button onclick="pushStatus('PICKED_UP')">PICKED_UP</button>
+      <button onclick="pushStatus('OUT_FOR_DELIVERY')">OUT_FOR_DELIVERY</button>
+      <button onclick="pushStatus('DELIVERED')">DELIVERED</button>
+    </div>
+  </section>
+
+  <section class="card">
+    <p class="label">Simulate driver location ping</p>
+    <button onclick="pushLocation()">Send random location</button>
+  </section>
+
+  <section class="card hint">
+    Try: kill the server (Ctrl+C), wait 3 seconds, restart it.
+    The browser auto-reconnects and sends <code>Last-Event-ID</code> header.
+    You don't write any reconnection code — EventSource does it for free.
+  </section>
+
+  <section class="card">
+    <h3>Event Log</h3>
+    <div id="log"></div>
+  </section>
+
+  <script src="client.js"></script>
+</body>
+</html>
